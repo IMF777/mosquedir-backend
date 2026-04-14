@@ -1,0 +1,402 @@
+[
+  {
+    "id": "d025d205-0148-44ca-bdaa-99912838a990",
+    "name": "King Salman Mosque",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 10000,
+    "latitude": 4.1756748,
+    "longitude": 73.5184941,
+    "buildDate": "2021",
+    "picture": "/assets/images/placeholder-mosque.png",
+    "description": "The largest mosque in the Maldives, with a capacity for 10,000 worshippers. Its iconic blue roof and five minarets, representing the five pillars of Islam, dominate the Malé skyline. It also houses a library and classrooms.",
+    "contact": ""
+  },
+  {
+    "id": "14e19062-0d98-46f4-b43a-e7d31532adb5",
+    "name": "Islamic Centre (Masjid-al-Sultan Muhammad Thakurufaanu Al Auzam)",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 5000,
+    "latitude": 4.17783,
+    "longitude": 73.51125,
+    "buildDate": "1984",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A landmark in the capital, known for its grand golden dome and towering minaret. It serves as the main hub for Islamic affairs in the country.",
+    "contact": "+960 332-2444"
+  },
+  {
+    "id": "6f07a1a2-9be3-4b02-bf75-72f2183a038c",
+    "name": "Malé Friday Mosque (Hukuru Miskiy)",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": false,
+    "capacity": 1500,
+    "latitude": 4.17788,
+    "longitude": 73.51104,
+    "buildDate": "1658",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The oldest mosque in Malé, a UNESCO tentative site famous for its intricate coral stone architecture and detailed lacquer work.",
+    "contact": ""
+  },
+  {
+    "id": "4edaf69e-0b94-40f9-a925-49fd71b7daf6",
+    "name": "Masjid Al-Noor",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": false,
+    "ladies": true,
+    "capacity": 600,
+    "latitude": 4.1755,
+    "longitude": 73.5104,
+    "buildDate": "",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A well-known mosque in the Maafannu district of Malé, offering a peaceful prayer space and dedicated ladies' area.",
+    "contact": ""
+  },
+  {
+    "id": "feef7de1-ec8d-45ef-b746-98aebf8ade9d",
+    "name": "Eid Mosque (Eid Miskih)",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 2000,
+    "latitude": 4.17765,
+    "longitude": 73.51081,
+    "buildDate": "1815",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A historic coral stone mosque built in the early 19th century, primarily used for Eid prayers and known for its distinctive minaret.",
+    "contact": ""
+  },
+  {
+    "id": "588eb914-786d-4b07-a0b9-d2d309c067d7",
+    "name": "Masjidhul Al-Sulthan Muhammad Ibn Abdhullah",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 800,
+    "latitude": 4.1762,
+    "longitude": 73.5103,
+    "buildDate": "",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A modern, multi-story mosque located on Ameenee Magu, serving a large congregation in the heart of the city.",
+    "contact": ""
+  },
+  {
+    "id": "e461210d-1ee1-47c7-97f2-5e3c9a83ab1c",
+    "name": "Bihuroazu Kamanaa Mosque",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": false,
+    "capacity": 400,
+    "latitude": 4.17593,
+    "longitude": 73.51061,
+    "buildDate": "16th Century",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A historic mosque with traditional coral stone walls and intricate carvings, located near the tomb of Sultan Muhammad Thakurufaanu. It reflects strong Persian architectural influences.",
+    "contact": ""
+  },
+  {
+    "id": "e6b90dc5-3e56-4d04-ba61-b43bc11a3afb",
+    "name": "Masjid Al-Furqan",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": false,
+    "ladies": true,
+    "capacity": 350,
+    "latitude": 4.1742,
+    "longitude": 73.5121,
+    "buildDate": "2010",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A key neighborhood mosque in the Galolhu district, known for its active community and educational programs.",
+    "contact": ""
+  },
+  {
+    "id": "87af7291-f5c0-4b06-9c46-46a0ff486faf",
+    "name": "Masjid Al-Jalaaluddin",
+    "island": "Malé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": false,
+    "ladies": true,
+    "capacity": 250,
+    "latitude": 4.1735,
+    "longitude": 73.5148,
+    "buildDate": "",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A local mosque serving the Machchangolhi ward of Malé, providing daily prayer services and religious classes.",
+    "contact": ""
+  },
+  {
+    "id": "88f3b0c3-35de-4ce4-8c1b-18ab1c196f12",
+    "name": "Hulhumalé Mosque",
+    "island": "Hulhumalé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 1500,
+    "latitude": 4.2166,
+    "longitude": 73.542,
+    "buildDate": "2000s",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The primary mosque on the reclaimed island of Hulhumalé, featuring modern Islamic architecture and serving the island's rapidly growing population.",
+    "contact": ""
+  },
+  {
+    "id": "09144ffc-7a81-49c9-9bde-ae731281afd0",
+    "name": "Villimalé Friday Mosque",
+    "island": "Villimalé",
+    "atoll": "Kaafu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 1200,
+    "latitude": 4.1737,
+    "longitude": 73.485,
+    "buildDate": "",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The central mosque for the island of Villimalé, known for its strong community spirit and beautiful seaside location.",
+    "contact": ""
+  },
+  {
+    "id": "27e53cb5-5dbe-4b3e-9285-29abd6814928",
+    "name": "Shangri-La Mosque",
+    "island": "Feydhoo",
+    "atoll": "Addu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 600,
+    "latitude": -0.6876,
+    "longitude": 73.1351,
+    "buildDate": "1995",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A prominent mosque in Addu Atoll, named after the nearby Shangri-La resort, serving the local community of Feydhoo.",
+    "contact": ""
+  },
+  {
+    "id": "01eb605d-2d86-420f-a8f7-335933ae41b6",
+    "name": "Gan Island Mosque",
+    "island": "Gan",
+    "atoll": "Laamu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 400,
+    "latitude": 1.918,
+    "longitude": 73.5411,
+    "buildDate": "",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The main mosque on Gan Island, historically significant due to the former Royal Air Force base. It serves as a spiritual center for the local population.",
+    "contact": ""
+  },
+  {
+    "id": "41bae283-d75b-4847-8b8b-1dbe63734d24",
+    "name": "Thinadhoo Friday Mosque",
+    "island": "Thinadhoo",
+    "atoll": "Gaafu Dhaalu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 700,
+    "latitude": 0.5308,
+    "longitude": 72.9991,
+    "buildDate": "1988",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The main mosque for Thinadhoo, the capital of Gaafu Dhaalu Atoll. A large, modern structure that can accommodate worshippers from across the island.",
+    "contact": ""
+  },
+  {
+    "id": "eb15fdb4-addd-4d41-ba0a-d2f5ab83ef0c",
+    "name": "Fenfushi Friday Mosque",
+    "island": "Fenfushi",
+    "atoll": "Alif Dhaal",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": false,
+    "capacity": 300,
+    "latitude": 3.4853,
+    "longitude": 72.8022,
+    "buildDate": "1692",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A UNESCO tentative site and one of the country's few remaining coral stone mosques. Its well-preserved state offers a glimpse into 17th-century Maldivian craftsmanship.",
+    "contact": ""
+  },
+  {
+    "id": "de12a42a-1839-42b8-b88a-35a62810f052",
+    "name": "Baarah Friday Mosque",
+    "island": "Baarah",
+    "atoll": "Haa Alif",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 350,
+    "latitude": 6.8211,
+    "longitude": 73.0238,
+    "buildDate": "1970",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The main mosque on the historic island of Baarah, a key center for Friday prayers in the northernmost atoll of the Maldives.",
+    "contact": ""
+  },
+  {
+    "id": "f2232868-5cb5-4c64-92dd-87f151fe751f",
+    "name": "Kulhudhuffushi Friday Mosque",
+    "island": "Kulhudhuffushi",
+    "atoll": "Haa Dhaalu",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 1500,
+    "latitude": 6.6225,
+    "longitude": 73.07,
+    "buildDate": "1995",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "One of the largest mosques in the north of Maldives, serving Kulhudhuffushi, the economic capital of the northern atolls.",
+    "contact": ""
+  },
+  {
+    "id": "44e1a84a-7db3-4a26-a5f0-05062f06b5c2",
+    "name": "Fuvahmulah Friday Mosque",
+    "island": "Fuvahmulah",
+    "atoll": "Gnaviyani",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 2000,
+    "latitude": -0.2983,
+    "longitude": 73.4204,
+    "buildDate": "2010",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The grand mosque of Fuvahmulah, a single-island atoll. It's a central landmark for the island's unique community and culture.",
+    "contact": ""
+  },
+  {
+    "id": "7c0c55a6-43b6-43f3-a15d-1c8833542831",
+    "name": "Al Yoosuf Mosque",
+    "island": "Eydhafushi",
+    "atoll": "Baa",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 800,
+    "latitude": 5.1038,
+    "longitude": 73.0705,
+    "buildDate": "1970s",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "A historically significant mosque in Baa Atoll, named Al Yoosuf. It has been a center for Islamic learning for decades.",
+    "contact": ""
+  },
+  {
+    "id": "0f293f7e-41c4-4ba7-bf8d-7e5443174648",
+    "name": "Mahibadhoo Friday Mosque",
+    "island": "Mahibadhoo",
+    "atoll": "Alif Dhaal",
+    "dhivehi": {
+      "name": "",
+      "island": "",
+      "atoll": ""
+    },
+    "friday": true,
+    "ladies": true,
+    "capacity": 500,
+    "latitude": 3.7569,
+    "longitude": 72.9681,
+    "buildDate": "1992",
+    "picture": "assets/placeholder-mosque.png",
+    "description": "The central mosque for Mahibadhoo, the capital island of Alif Dhaal Atoll, known for its welcoming congregation.",
+    "contact": ""
+  }
+]
