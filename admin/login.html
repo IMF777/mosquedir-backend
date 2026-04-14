@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Mosque Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .login-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        button:hover {
+            background: #1b5e20;
+        }
+        
+        button:disabled {
+            background: #9e9e9e;
+            cursor: not-allowed;
+        }
+        
+        .error {
+            color: #d32f2f;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .auto-login-message {
+            text-align: center;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .back-link a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🕌 Admin Login</h2>
+        
+        <!-- Auto-login checking state -->
+        <div id="autoLoginState" class="auto-login-message">
+            <div class="loader" style="border-color: #2e7d32; border-top-color: transparent;"></div>
+            <p style="margin-top: 10px;">Checking existing session...</p>
+        </div>
+        
+        <!-- Login form (hidden initially while checking) -->
+        <form id="loginForm" class="hidden">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
+            </div>
+            <button type="submit" id="loginBtn">Login</button>
+            <div id="error" class="error"></div>
+        </form>
+        
+        <div class="back-link">
+            <a href="/">← Back to Mosque Directory</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = ''; // Empty for same origin
+        
+        // Check for existing token and attempt auto-login
+        async function attemptAutoLogin() {
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                // No token found, show login form
+                showLoginForm();
+                return;
+            }
+            
+            try {
+                // Try to validate token by making a request to a protected endpoint
+                // We'll use /api/stats endpoint which requires auth
+                const response = await fetch('/api/stats', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    // Token is valid, proceed to dashboard
+                    await loadDashboard(token);
+                } else {
+                    // Token invalid or expired, clear it and show login
+                    localStorage.removeItem('adminToken');
+                    showLoginForm();
+                }
+            } catch (error) {
+                console.error('Auto-login check failed:', error);
+                // Network error - might be offline, show login form
+                showLoginForm();
+            }
+        }
+        
+        async function loadDashboard(token) {
+            try {
+                // Request dashboard with existing token
+                const response = await fetch('/requestAdmin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ 
+                        autoLogin: true,
+                        token: token 
+                    })
+                });
+                
+                if (response.ok) {
+                    const html = await response.text();
+                    // Replace current page with dashboard
+                    document.open();
+                    document.write(html);
+                    document.close();
+                } else {
+                    // If dashboard request fails, fall back to login
+                    localStorage.removeItem('adminToken');
+                    showLoginForm();
+                }
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+                showLoginForm();
+            }
+        }
+        
+        function showLoginForm() {
+            document.getElementById('autoLoginState').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            
+            // Focus on username field
+            document.getElementById('username').focus();
+        }
+        
+        // Handle manual login
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const loginBtn = document.getElementById('loginBtn');
+                const errorDiv = document.getElementById('error');
+                
+                // Disable button and show loading state
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<span class="loader"></span> Logging in...';
+                errorDiv.textContent = '';
+                
+                try {
+                    const response = await fetch('/requestAdmin', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+                    
+                    if (response.ok) {
+                        const html = await response.text();
+                        // Extract token from the HTML (it's in a hidden div with id tokenHolder)
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = html;
+                        const tokenHolder = tempDiv.querySelector('#tokenHolder');
+                        
+                        if (tokenHolder) {
+                            const token = tokenHolder.textContent.trim();
+                            localStorage.setItem('adminToken', token);
+                        }
+                        
+                        // Replace page with dashboard
+                        document.open();
+                        document.write(html);
+                        document.close();
+                    } else {
+                        const errorText = await response.text();
+                        errorDiv.textContent = errorText || 'Invalid credentials';
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Login';
+                        
+                        // Clear password field on error
+                        document.getElementById('password').value = '';
+                        document.getElementById('password').focus();
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    errorDiv.textContent = 'Network error. Please try again.';
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Login';
+                }
+            });
+        });
+        
+        // Start auto-login check
+        attemptAutoLogin();
+        
+        // Handle Enter key on password field
+        document.getElementById('password')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>

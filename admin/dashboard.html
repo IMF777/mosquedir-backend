@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mosque Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f7fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .dashboard-header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-header h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .card-header h2 {
+            color: #2e7d32;
+            font-size: 1.5rem;
+        }
+        
+        .card-header .icon {
+            font-size: 1.8rem;
+        }
+        
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 5px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+        
+        .checkbox-group label {
+            display: inline;
+            margin: 0;
+            text-transform: none;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #2e7d32;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1b5e20;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+        
+        .btn-danger {
+            background: #d32f2f;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+        
+        .btn-small {
+            padding: 5px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        /* Upload Area */
+        .upload-area {
+            border: 3px dashed #ccc;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            background: #fafafa;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #2e7d32;
+            background: #f0f8f0;
+        }
+        
+        .upload-area.dragover {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: #f5f5f5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #e0e0e0;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .badge-secondary {
+            background: #e0e0e0;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h3 {
+            color: #2e7d32;
+            font-size: 1.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            padding: 0 5px;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        /* JSON Editor */
+        .json-editor {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f8f8f8;
+        }
+        
+        .json-editor:focus {
+            outline: none;
+            border-color: #2e7d32;
+            background: white;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+        
+        /* Token holder (hidden) */
+        .token {
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 2000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .toast.success {
+            background: #2e7d32;
+        }
+        
+        .toast.error {
+            background: #d32f2f;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>
+                <span>🕌</span>
+                Mosque Directory Admin
+            </h1>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-mosques">0</div>
+                    <div class="stat-label">Total Mosques</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-atolls">0</div>
+                    <div class="stat-label">Atolls</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-islands">0</div>
+                    <div class="stat-label">Islands</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <span>🚪</span> Logout
+            </button>
+        </div>
+        
+        <div class="token" id="tokenHolder">{{TOKEN}}</div>
+        
+        <!-- Add/Edit Mosque Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📝</span>
+                <h2>Add / Edit Mosque</h2>
+            </div>
+            <form id="mosqueForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Mosque Name (English) *</label>
+                        <input type="text" id="name" name="name" placeholder="e.g., Masjid Al-Sultan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dhivehiName">Mosque Name (Dhivehi)</label>
+                        <input type="text" id="dhivehiName" name="dhivehi.name" placeholder="މަސްޖިދުއްސުލްޠާން">
+                    </div>
+                    <div class="form-group">
+                        <label for="island">Island *</label>
+                        <input type="text" id="island" name="island" placeholder="e.g., Malé" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dhivehiIsland">Island (Dhivehi)</label>
+                        <input type="text" id="dhivehiIsland" name="dhivehi.island" placeholder="މާލެ">
+                    </div>
+                    <div class="form-group">
+                        <label for="atoll">Atoll *</label>
+                        <input type="text" id="atoll" name="atoll" placeholder="e.g., Kaafu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dhivehiAtoll">Atoll (Dhivehi)</label>
+                        <input type="text" id="dhivehiAtoll" name="dhivehi.atoll" placeholder="ކާފު">
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Capacity</label>
+                        <input type="number" id="capacity" name="capacity" placeholder="e.g., 500" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="number" id="latitude" name="latitude" placeholder="e.g., 4.1755" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="number" id="longitude" name="longitude" placeholder="e.g., 73.5093" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="buildDate">Build Date</label>
+                        <input type="date" id="buildDate" name="buildDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" id="contact" name="contact" placeholder="e.g., +960 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="picture">Picture URL</label>
+                        <input type="url" id="picture" name="picture" placeholder="https://example.com/mosque.png">
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="friday" name="friday">
+                    <label for="friday">Friday Prayer Available</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="ladies" name="ladies">
+                    <label for="ladies">Ladies' Prayer Space Available</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Enter mosque description..."></textarea>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">
+                        <span>💾</span> Save Mosque
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="clearFormBtn">
+                        <span>🔄</span> Clear Form
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Bulk Upload Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📤</span>
+                <h2>Bulk Upload</h2>
+            </div>
+            <form id="uploadForm">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <p style="margin-bottom: 10px; font-weight: 500;">Drag & drop your file here or click to browse</p>
+                    <p style="color: #666; font-size: 0.9rem;">Supported formats: JSON, CSV, Excel (.xlsx, .xls)</p>
+                    <input type="file" id="fileInput" name="file" accept=".json,.csv,.xlsx,.xls" style="display: none;" required>
+                </div>
+                <div style="margin-top: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #555;">Import Mode:</label>
+                    <div class="btn-group">
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="mode" value="merge" checked>
+                            <span>🔄 Merge (update existing, add new)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="mode" value="replace">
+                            <span>⚠️ Replace (delete all existing data)</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" id="uploadBtn">
+                        <span>⬆️</span> Upload & Process
+                    </button>
+                </div>
+            </form>
+            <div id="uploadStatus" style="margin-top: 15px;"></div>
+        </div>
+        
+        <!-- Download Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📥</span>
+                <h2>Download Database</h2>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary download-btn" data-format="json">
+                    <span>📄</span> Download JSON
+                </button>
+                <button class="btn btn-primary download-btn" data-format="csv">
+                    <span>📊</span> Download CSV
+                </button>
+                <button class="btn btn-primary download-btn" data-format="excel">
+                    <span>📈</span> Download Excel
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mosque Table Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📋</span>
+                <h2>All Mosques</h2>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="tableSearch" class="search-input" placeholder="🔍 Search mosques by name, island, or atoll...">
+                <button class="btn btn-secondary" id="refreshTableBtn">
+                    <span>🔄</span> Refresh
+                </button>
+            </div>
+            
+            <div class="table-container">
+                <table id="mosqueTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Island</th>
+                            <th>Atoll</th>
+                            <th>Friday</th>
+                            <th>Ladies</th>
+                            <th>Capacity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center;">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JSON Edit Modal -->
+    <div class="modal" id="jsonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Edit Mosque (JSON)</h3>
+                <button class="close-btn" onclick="closeJsonModal()">&times;</button>
+            </div>
+            <textarea id="jsonEditor" class="json-editor"></textarea>
+            <div class="btn-group" style="margin-top: 20px;">
+                <button class="btn btn-primary" id="saveJsonBtn">
+                    <span>💾</span> Save Changes
+                </button>
+                <button class="btn btn-secondary" onclick="closeJsonModal()">
+                    <span>❌</span> Cancel
+                </button>
+            </div>
+            <div id="jsonError" style="color: #d32f2f; margin-top: 10px;"></div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const token = document.getElementById('tokenHolder').textContent.trim();
+        if (token && token !== '{{TOKEN}}') {
+            localStorage.setItem('adminToken', token);
+        }
+        
+        let currentMosques = [];
+        let editingMosqueId = null;
+        
+        // Utility: Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Utility: Auth fetch
+        async function authFetch(url, options = {}) {
+            const token = localStorage.getItem('adminToken');
+            return fetch(url, {
+                ...options,
+                headers: {
+                    ...options.headers,
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        }
+        
+        // Load stats and table
+        async function loadData() {
+            try {
+                const response = await fetch('/api/all');
+                const mosques = await response.json();
+                currentMosques = mosques;
+                
+                // Update stats
+                const atolls = [...new Set(mosques.map(m => m.atoll))];
+                const islands = [...new Set(mosques.map(m => m.island))];
+                
+                document.getElementById('total-mosques').textContent = mosques.length;
+                document.getElementById('total-atolls').textContent = atolls.length;
+                document.getElementById('total-islands').textContent = islands.length;
+                
+                // Update table
+                renderTable(mosques);
+            } catch (error) {
+                console.error('Failed to load data:', error);
+                showToast('Failed to load mosque data', 'error');
+            }
+        }
+        
+        // Render table
+        function renderTable(mosques) {
+            const tbody = document.getElementById('tableBody');
+            const searchTerm = document.getElementById('tableSearch')?.value.toLowerCase() || '';
+            
+            const filtered = mosques.filter(m => 
+                m.name.toLowerCase().includes(searchTerm) ||
+                m.island.toLowerCase().includes(searchTerm) ||
+                m.atoll.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 30px; color: #666;">No mosques found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = filtered.map(mosque => `
+                <tr>
+                    <td>
+                        <strong>${mosque.name}</strong>
+                        ${mosque.dhivehi?.name ? `<br><small style="color: #666;">${mosque.dhivehi.name}</small>` : ''}
+                    </td>
+                    <td>${mosque.island}</td>
+                    <td>${mosque.atoll}</td>
+                    <td>
+                        <span class="badge ${mosque.friday ? 'badge-success' : 'badge-secondary'}">
+                            ${mosque.friday ? '✓ Yes' : '✗ No'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${mosque.ladies ? 'badge-success' : 'badge-secondary'}">
+                            ${mosque.ladies ? '✓ Yes' : '✗ No'}
+                        </span>
+                    </td>
+                    <td>${mosque.capacity || 'N/A'}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary btn-small" onclick="editMosque('${mosque.id}')">
+                                ✏️ Edit
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="editJson('${mosque.id}')">
+                                📝 JSON
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // Edit mosque (populate form)
+        window.editMosque = function(id) {
+            const mosque = currentMosques.find(m => m.id === id);
+            if (!mosque) return;
+            
+            editingMosqueId = id;
+            
+            // Populate form
+            document.getElementById('name').value = mosque.name || '';
+            document.getElementById('dhivehiName').value = mosque.dhivehi?.name || '';
+            document.getElementById('island').value = mosque.island || '';
+            document.getElementById('dhivehiIsland').value = mosque.dhivehi?.island || '';
+            document.getElementById('atoll').value = mosque.atoll || '';
+            document.getElementById('dhivehiAtoll').value = mosque.dhivehi?.atoll || '';
+            document.getElementById('capacity').value = mosque.capacity || '';
+            document.getElementById('latitude').value = mosque.latitude || '';
+            document.getElementById('longitude').value = mosque.longitude || '';
+            document.getElementById('buildDate').value = mosque.buildDate || '';
+            document.getElementById('contact').value = mosque.contact || '';
+            document.getElementById('picture').value = mosque.picture || '';
+            document.getElementById('description').value = mosque.description || '';
+            document.getElementById('friday').checked = mosque.friday || false;
+            document.getElementById('ladies').checked = mosque.ladies || false;
+            
+            // Scroll to form
+            document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        // Edit as JSON
+        window.editJson = function(id) {
+            const mosque = currentMosques.find(m => m.id === id);
+            if (!mosque) return;
+            
+            editingMosqueId = id;
+            document.getElementById('jsonEditor').value = JSON.stringify(mosque, null, 2);
+            document.getElementById('jsonModal').classList.add('active');
+            document.getElementById('jsonError').textContent = '';
+        };
+        
+        window.closeJsonModal = function() {
+            document.getElementById('jsonModal').classList.remove('active');
+            editingMosqueId = null;
+        };
+        
+        // Save JSON changes
+        document.getElementById('saveJsonBtn').addEventListener('click', async () => {
+            try {
+                const jsonText = document.getElementById('jsonEditor').value;
+                const mosqueData = JSON.parse(jsonText);
+                
+                if (!mosqueData.name || !mosqueData.island || !mosqueData.atoll) {
+                    throw new Error('Name, island, and atoll are required');
+                }
+                
+                const response = await authFetch('/append', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(mosqueData)
+                });
+                
+                if (response.ok) {
+                    showToast('Mosque updated successfully', 'success');
+                    closeJsonModal();
+                    loadData();
+                } else {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to save');
+                }
+            } catch (error) {
+                document.getElementById('jsonError').textContent = error.message;
+                showToast(error.message, 'error');
+            }
+        });
+        
+        // Form submit
+        document.getElementById('mosqueForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                id: editingMosqueId,
+                dhivehi: {}
+            };
+            
+            for (let [key, value] of formData.entries()) {
+                if (key.includes('.')) {
+                    const [parent, child] = key.split('.');
+                    data[parent][child] = value;
+                } else if (e.target[key]?.type === 'checkbox') {
+                    data[key] = e.target[key].checked;
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            try {
+                const response = await authFetch('/append', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    showToast(editingMosqueId ? 'Mosque updated' : 'Mosque added', 'success');
+                    clearForm();
+                    loadData();
+                } else {
+                    throw new Error('Failed to save mosque');
+                }
+            } catch (error) {
+                showToast(error.message, 'error');
+            }
+        });
+        
+        // Clear form
+        function clearForm() {
+            document.getElementById('mosqueForm').reset();
+            editingMosqueId = null;
+        }
+        
+        document.getElementById('clearFormBtn').addEventListener('click', clearForm);
+        
+        // Upload area
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+        });
+        
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">📄</div>
+                    <p style="margin-bottom: 10px; font-weight: 500;">${fileInput.files[0].name}</p>
+                    <p style="color: #666; font-size: 0.9rem;">Click to change file</p>
+                `;
+            }
+        });
+        
+        // Upload form
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showToast('Please select a file', 'error');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', document.querySelector('input[name="mode"]:checked').value);
+            
+            const uploadBtn = document.getElementById('uploadBtn');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span class="spinner"></span> Processing...';
+            
+            try {
+                const response = await authFetch('/uploadData', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showToast(`Successfully processed ${result.count} mosques`, 'success');
+                    loadData();
+                    // Reset upload area
+                    uploadArea.innerHTML = `
+                        <div class="upload-icon">📁</div>
+                        <p style="margin-bottom: 10px; font-weight: 500;">Drag & drop your file here or click to browse</p>
+                        <p style="color: #666; font-size: 0.9rem;">Supported formats: JSON, CSV, Excel (.xlsx, .xls)</p>
+                    `;
+                    fileInput.value = '';
+                } else {
+                    throw new Error(result.error || 'Upload failed');
+                }
+            } catch (error) {
+                showToast(error.message, 'error');
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.innerHTML = '<span>⬆️</span> Upload & Process';
+            }
+        });
+        
+        // Download buttons
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const format = btn.dataset.format;
+                try {
+                    const response = await authFetch(`/download?format=${format}`);
+                    
+                    if (!response.ok) throw new Error('Download failed');
+                    
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `mosques.${format === 'excel' ? 'xlsx' : format}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                    
+                    showToast('Download started', 'success');
+                } catch (error) {
+                    showToast('Download failed', 'error');
+                }
+            });
+        });
+        
+        // Table search
+        document.getElementById('tableSearch').addEventListener('input', () => {
+            renderTable(currentMosques);
+        });
+        
+        // Refresh table
+        document.getElementById('refreshTableBtn').addEventListener('click', loadData);
+        
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await authFetch('/logout', { method: 'POST' });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+            localStorage.removeItem('adminToken');
+            window.location.href = '/admin';
+        });
+        
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeJsonModal();
+            }
+        });
+        
+        // Initial load
+        loadData();
+        
+        // Check token validity periodically
+        setInterval(async () => {
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                window.location.href = '/admin';
+                return;
+            }
+            
+            try {
+                const response = await authFetch('/stats');
+                if (!response.ok) {
+                    localStorage.removeItem('adminToken');
+                    window.location.href = '/admin';
+                }
+            } catch (error) {
+                console.error('Token check failed:', error);
+            }
+        }, 30 * 60 * 1000);
+    </script>
+</body>
+</html>
